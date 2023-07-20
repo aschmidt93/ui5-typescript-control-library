@@ -9,11 +9,15 @@
 		"url": "https://github.com/SAP-samples/ui5-typescript-control-library.git"
 	},
 	"types": "dist/index.d.ts",
+	"files": [
+		"./dist",
+		"ui5.yaml"
+	],
 	"scripts": {
 		"clean": "rimraf dist coverage",
-		"build": "npm run build:ts-interfaces && ui5 build --clean-dest",
+		"build": "npm run build:ts-interfaces && ui5 build --clean-dest --config ui5-dev.yaml",
 		"build:ts-interfaces": "npx @ui5/ts-interface-generator",
-		"start": "run-p 'build:ts-interfaces -- --watch' start:server",
+		"start": "run-p 'build:ts-interfaces -- --watch' start:server --config ui5-dev.yaml",
 		"start:server": "ui5 serve --port 8080 -o test-resources/com/myorg/myui5lib/Example.html",
 		"start:dist": "ui5 serve  --port 8080 -o test-resources/com/myorg/myui5lib/Example.html --config ui5-dist.yaml",
 		"testsuite": "ui5 serve --open test-resources/com/myorg/myui5lib/qunit/testsuite.qunit.html",
